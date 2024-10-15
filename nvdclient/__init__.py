@@ -8,5 +8,5 @@ __all__ = [
     "CVSSMetricV2",
     "CVSSMetricV30",
     "CVSSMetricV31",
-    "CVSSMetricV40"
+    "CVSSMetricV40",
 ]

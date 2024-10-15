@@ -12,18 +12,15 @@ from nvdclient.internal import NormalisedAPIParameters
 class NVDClient:
 
     def __init__(
-            self,
-            api_key: str,
-            base_url: str = "https://services.nvd.nist.gov/rest/json",
+        self,
+        api_key: str,
+        base_url: str = "https://services.nvd.nist.gov/rest/json",
     ):
         self.__api_key = api_key
         self.base_url = base_url
 
     def _get(
-            self,
-            endpoint: str,
-            params: Optional[Dict] = None,
-            api_version: str = "2.0"
+        self, endpoint: str, params: Optional[Dict] = None, api_version: str = "2.0"
     ) -> Any:
         """
         Helper method for building and making GET requests.
@@ -40,38 +37,38 @@ class NVDClient:
         return resp.json()
 
     def search_cves(
-            self,
-            cpeName: Optional[str] = None,
-            cveId: Optional[str] = None,
-            cveTag: Optional[str] = None,
-            cvssV2Metrics: Optional[str] = None,
-            cvssV2Severity: Optional[str] = None,
-            cvssV3Metrics: Optional[str] = None,
-            cvssV3Severity: Optional[str] = None,
-            cvssV4Metrics: Optional[str] = None,
-            cvssV4Severity: Optional[str] = None,
-            cweId: Optional[str] = None,
-            hasCertAlerts: Optional[bool] = None,
-            hasCertNotes: Optional[bool] = None,
-            hasKev: Optional[bool] = None,
-            hasOval: Optional[bool] = None,
-            isVulnerable: Optional[bool] = None,
-            keywordExactMatch: Optional[bool] = None,
-            keywordSearch: Optional[str] = None,
-            lastModStartDate: Optional[str | datetime] = None,
-            lastModEndDate: Optional[str | datetime] = None,
-            noRejected: Optional[bool] = None,
-            pubStartDate: Optional[str | datetime] = None,
-            pubEndDate: Optional[str | datetime] = None,
-            resultsPerPage: int = 2000,
-            startIndex: int = 0,
-            sourceIdentifier: Optional[str] = None,
-            versionEnd: Optional[str] = None,
-            versionEndType: Optional[str] = None,
-            versionStart: Optional[str] = None,
-            versionStartType: Optional[str] = None,
-            virtualMatchString: Optional[str] = None,
-            raw_json_response: bool = False
+        self,
+        cpeName: Optional[str] = None,
+        cveId: Optional[str] = None,
+        cveTag: Optional[str] = None,
+        cvssV2Metrics: Optional[str] = None,
+        cvssV2Severity: Optional[str] = None,
+        cvssV3Metrics: Optional[str] = None,
+        cvssV3Severity: Optional[str] = None,
+        cvssV4Metrics: Optional[str] = None,
+        cvssV4Severity: Optional[str] = None,
+        cweId: Optional[str] = None,
+        hasCertAlerts: Optional[bool] = None,
+        hasCertNotes: Optional[bool] = None,
+        hasKev: Optional[bool] = None,
+        hasOval: Optional[bool] = None,
+        isVulnerable: Optional[bool] = None,
+        keywordExactMatch: Optional[bool] = None,
+        keywordSearch: Optional[str] = None,
+        lastModStartDate: Optional[str | datetime] = None,
+        lastModEndDate: Optional[str | datetime] = None,
+        noRejected: Optional[bool] = None,
+        pubStartDate: Optional[str | datetime] = None,
+        pubEndDate: Optional[str | datetime] = None,
+        resultsPerPage: int = 2000,
+        startIndex: int = 0,
+        sourceIdentifier: Optional[str] = None,
+        versionEnd: Optional[str] = None,
+        versionEndType: Optional[str] = None,
+        versionStart: Optional[str] = None,
+        versionStartType: Optional[str] = None,
+        virtualMatchString: Optional[str] = None,
+        raw_json_response: bool = False,
     ) -> Dict[str, Any]:
         """
         Search the NVD CVE API for results matching query terms.
@@ -141,82 +138,84 @@ class NVDClient:
             versionEndType,
             versionStart,
             versionStartType,
-            virtualMatchString
+            virtualMatchString,
         ).get_all_used_params()
 
         res = self._get("/cves", params)
 
         if not raw_json_response:
-            res["vulnerabilities"] = [CVE(elem.get("cve", {})) for elem in res.get("vulnerabilities", [])]
+            res["vulnerabilities"] = [
+                CVE(elem.get("cve", {})) for elem in res.get("vulnerabilities", [])
+            ]
 
         return res
 
     def search_cves_all(
-            self,
-            cpeName: Optional[str] = None,
-            cveId: Optional[str] = None,
-            cveTag: Optional[str] = None,
-            cvssV2Metrics: Optional[str] = None,
-            cvssV2Severity: Optional[str] = None,
-            cvssV3Metrics: Optional[str] = None,
-            cvssV3Severity: Optional[str] = None,
-            cvssV4Metrics: Optional[str] = None,
-            cvssV4Severity: Optional[str] = None,
-            cweId: Optional[str] = None,
-            hasCertAlerts: Optional[bool] = None,
-            hasCertNotes: Optional[bool] = None,
-            hasKev: Optional[bool] = None,
-            hasOval: Optional[bool] = None,
-            isVulnerable: Optional[bool] = None,
-            keywordExactMatch: Optional[bool] = None,
-            keywordSearch: Optional[str] = None,
-            lastModStartDate: Optional[str | datetime] = None,
-            lastModEndDate: Optional[str | datetime] = None,
-            noRejected: Optional[bool] = None,
-            pubStartDate: Optional[str | datetime] = None,
-            pubEndDate: Optional[str | datetime] = None,
-            sourceIdentifier: Optional[str] = None,
-            versionEnd: Optional[str] = None,
-            versionEndType: Optional[str] = None,
-            versionStart: Optional[str] = None,
-            versionStartType: Optional[str] = None,
-            virtualMatchString: Optional[str] = None,
-            raw_json_response: bool = False
+        self,
+        cpeName: Optional[str] = None,
+        cveId: Optional[str] = None,
+        cveTag: Optional[str] = None,
+        cvssV2Metrics: Optional[str] = None,
+        cvssV2Severity: Optional[str] = None,
+        cvssV3Metrics: Optional[str] = None,
+        cvssV3Severity: Optional[str] = None,
+        cvssV4Metrics: Optional[str] = None,
+        cvssV4Severity: Optional[str] = None,
+        cweId: Optional[str] = None,
+        hasCertAlerts: Optional[bool] = None,
+        hasCertNotes: Optional[bool] = None,
+        hasKev: Optional[bool] = None,
+        hasOval: Optional[bool] = None,
+        isVulnerable: Optional[bool] = None,
+        keywordExactMatch: Optional[bool] = None,
+        keywordSearch: Optional[str] = None,
+        lastModStartDate: Optional[str | datetime] = None,
+        lastModEndDate: Optional[str | datetime] = None,
+        noRejected: Optional[bool] = None,
+        pubStartDate: Optional[str | datetime] = None,
+        pubEndDate: Optional[str | datetime] = None,
+        sourceIdentifier: Optional[str] = None,
+        versionEnd: Optional[str] = None,
+        versionEndType: Optional[str] = None,
+        versionStart: Optional[str] = None,
+        versionStartType: Optional[str] = None,
+        virtualMatchString: Optional[str] = None,
+        raw_json_response: bool = False,
     ) -> List[CVE] | List[Dict[str, Any]]:
         """
-                Search the NVD CVE API for all results matching query terms.
+        Search the NVD CVE API for all results matching query terms.
 
-                :param cpeName: This value is compared against the CPE Match Criteria within a CVE applicability statement.
-                :param cveId: A specific vulnerability identified by its unique Common Vulnerabilities and Exposures identifier (the CVE ID).
-                :param cveTag: A specific CVE Tag to search for. E.g. 'disputed'.
-                :param cvssV2Metrics: Either full or partial vector strings may be used. This parameter cannot be used in requests that include cvssV3Metrics or cvssv4Metrics.
-                :param cvssV2Severity: A specific CVSSv2 qualitative severity rating to search for. This parameter cannot be used in requests that include cvssV3Severity or cvssv4Severity.
-                :param cvssV3Metrics: Either full or partial vector strings may be used. This parameter cannot be used in requests that include cvssV2Metrics or cvssv4Metrics.
-                :param cvssV3Severity: A specific CVSSv3 qualitative severity rating to search for. This parameter cannot be used in requests that include cvssV2Severity or cvssv4Severity.
-                :param cvssV4Metrics: Either full or partial vector strings may be used. This parameter cannot be used in requests that include cvssV2Metrics or cvssv3Metrics.
-                :param cvssV4Severity: A specific CVSSv4 qualitative severity rating to search for. This parameter cannot be used in requests that include cvssV2Severity or cvssv3Severity.
-                :param cweId: This parameter returns only the CVE that include a weakness identified by Common Weakness Enumeration using the provided {CWE-ID}.
-                :param hasCertAlerts: This parameter returns only CVE's that contain a Technical Alert from US-CERT.
-                :param hasCertNotes: This parameter returns CVE's that contain a Vulnerability Note from CERT/CC.
-                :param hasKev: This parameter returns CVE's that appear in CISA's Known Exploited Vulnerabilities (KEV) Catalog.
-                :param hasOval: This parameter returns CVE's that contain information from MITRE's Open Vulnerability and Assessment Language (OVAL) before this transitioned to the Center for Internet Security (CIS).
-                :param isVulnerable: This parameter returns CVE's associated with a specific CPE, where the CPE is also considered vulnerable.
-                :param keywordExactMatch: If the value of keywordSearch is a phrase, i.e., contains more than one term, including keywordExactMatch returns only the CVEs matching the phrase exactly. Otherwise, the results will contain records having any of the terms.
-                :param keywordSearch: This parameter returns only the CVEs where a word or phrase is found in the current description.
-                :param lastModStartDate: return only the CVEs that were last modified during the specified period. Either a datetime.datetime object, or a string in ISO format.
-                :param lastModEndDate: return only the CVEs that were last modified during the specified period. Either a datetime.datetime object, or a string in ISO format.
-                :param noRejected: This parameter excludes CVE records with the REJECT or Rejected status from API response.
-                :param pubStartDate: These parameters return only the CVEs that were added to the NVD (i.e., published) during the specified period. Either a datetime.datetime object, or a string in ISO format.
-                :param pubEndDate: These parameters return only the CVEs that were added to the NVD (i.e., published) during the specified period. Either a datetime.datetime object, or a string in ISO format.
-                :param sourceIdentifier: CVE's where the exact value of `sourceIdentifier` appears as a data source in the CVE record.
-                :param versionEnd: The virtualMatchString parameter may be combined with versionEnd and versionEndType to return only the CVEs associated with CPEs in specific version ranges.
-                :param versionEndType: The virtualMatchString parameter may be combined with versionEnd and versionEndType to return only the CVEs associated with CPEs in specific version ranges.
-                :param versionStart: The virtualMatchString parameter may be combined with versionStart and versionStartType to return only the CVEs associated with CPEs in specific version ranges.
-                :param versionStartType: The virtualMatchString parameter may be combined with versionStart and versionStartType to return only the CVEs associated with CPEs in specific version ranges.
-                :param virtualMatchString: This parameter filters CVE more broadly than cpeName. The exact value of `cpe match string` is compared against the CPE Match Criteria present on CVE applicability statements.
-                :param raw_json_response: Whether the resulting objects returned from the API should be converted to CVE objects. Otherwise they are left as JSON.
-                :return: The CVE API returns seven primary objects in the body of the response: resultsPerPage, startIndex, totalResults, format, version, timestamp, and vulnerabilities.
-                """
+        :param cpeName: This value is compared against the CPE Match Criteria within a CVE applicability statement.
+        :param cveId: A specific vulnerability identified by its unique Common Vulnerabilities and Exposures identifier (the CVE ID).
+        :param cveTag: A specific CVE Tag to search for. E.g. 'disputed'.
+        :param cvssV2Metrics: Either full or partial vector strings may be used. This parameter cannot be used in requests that include cvssV3Metrics or cvssv4Metrics.
+        :param cvssV2Severity: A specific CVSSv2 qualitative severity rating to search for. This parameter cannot be used in requests that include cvssV3Severity or cvssv4Severity.
+        :param cvssV3Metrics: Either full or partial vector strings may be used. This parameter cannot be used in requests that include cvssV2Metrics or cvssv4Metrics.
+        :param cvssV3Severity: A specific CVSSv3 qualitative severity rating to search for. This parameter cannot be used in requests that include cvssV2Severity or cvssv4Severity.
+        :param cvssV4Metrics: Either full or partial vector strings may be used. This parameter cannot be used in requests that include cvssV2Metrics or cvssv3Metrics.
+        :param cvssV4Severity: A specific CVSSv4 qualitative severity rating to search for. This parameter cannot be used in requests that include cvssV2Severity or cvssv3Severity.
+        :param cweId: This parameter returns only the CVE that include a weakness identified by Common Weakness Enumeration using the provided {CWE-ID}.
+        :param hasCertAlerts: This parameter returns only CVE's that contain a Technical Alert from US-CERT.
+        :param hasCertNotes: This parameter returns CVE's that contain a Vulnerability Note from CERT/CC.
+        :param hasKev: This parameter returns CVE's that appear in CISA's Known Exploited Vulnerabilities (KEV) Catalog.
+        :param hasOval: This parameter returns CVE's that contain information from MITRE's Open Vulnerability and Assessment Language (OVAL) before this transitioned to the Center for Internet Security (CIS).
+        :param isVulnerable: This parameter returns CVE's associated with a specific CPE, where the CPE is also considered vulnerable.
+        :param keywordExactMatch: If the value of keywordSearch is a phrase, i.e., contains more than one term, including keywordExactMatch returns only the CVEs matching the phrase exactly. Otherwise, the results will contain records having any of the terms.
+        :param keywordSearch: This parameter returns only the CVEs where a word or phrase is found in the current description.
+        :param lastModStartDate: return only the CVEs that were last modified during the specified period. Either a datetime.datetime object, or a string in ISO format.
+        :param lastModEndDate: return only the CVEs that were last modified during the specified period. Either a datetime.datetime object, or a string in ISO format.
+        :param noRejected: This parameter excludes CVE records with the REJECT or Rejected status from API response.
+        :param pubStartDate: These parameters return only the CVEs that were added to the NVD (i.e., published) during the specified period. Either a datetime.datetime object, or a string in ISO format.
+        :param pubEndDate: These parameters return only the CVEs that were added to the NVD (i.e., published) during the specified period. Either a datetime.datetime object, or a string in ISO format.
+        :param sourceIdentifier: CVE's where the exact value of `sourceIdentifier` appears as a data source in the CVE record.
+        :param versionEnd: The virtualMatchString parameter may be combined with versionEnd and versionEndType to return only the CVEs associated with CPEs in specific version ranges.
+        :param versionEndType: The virtualMatchString parameter may be combined with versionEnd and versionEndType to return only the CVEs associated with CPEs in specific version ranges.
+        :param versionStart: The virtualMatchString parameter may be combined with versionStart and versionStartType to return only the CVEs associated with CPEs in specific version ranges.
+        :param versionStartType: The virtualMatchString parameter may be combined with versionStart and versionStartType to return only the CVEs associated with CPEs in specific version ranges.
+        :param virtualMatchString: This parameter filters CVE more broadly than cpeName. The exact value of `cpe match string` is compared against the CPE Match Criteria present on CVE applicability statements.
+        :param raw_json_response: Whether the resulting objects returned from the API should be converted to CVE objects. Otherwise they are left as JSON.
+        :return: The CVE API returns seven primary objects in the body of the response: resultsPerPage, startIndex, totalResults, format, version, timestamp, and vulnerabilities.
+        """
         resp = self.search_cves(
             cpeName=cpeName,
             cveId=cveId,
@@ -246,11 +245,13 @@ class NVDClient:
             versionStart=versionStart,
             versionStartType=versionStartType,
             virtualMatchString=virtualMatchString,
-            raw_json_response=raw_json_response
+            raw_json_response=raw_json_response,
         )
 
         vulns = []
-        while resp.get("totalResults", 0) > resp.get("resultsPerPage", 0) * resp.get("startIndex", 0) + resp.get("resultsPerPage", 0):
+        while resp.get("totalResults", 0) > resp.get("resultsPerPage", 0) * resp.get(
+            "startIndex", 0
+        ) + resp.get("resultsPerPage", 0):
             vulns += resp.get("vulnerabilities", [])
             resp = self.search_cves(
                 cpeName=cpeName,
@@ -281,23 +282,22 @@ class NVDClient:
                 versionStart=versionStart,
                 versionStartType=versionStartType,
                 virtualMatchString=virtualMatchString,
-                raw_json_response=raw_json_response
+                raw_json_response=raw_json_response,
             )
 
         vulns += resp.get("vulnerabilities", [])
 
         return vulns
 
-
     def cve_history(
-            self,
-            changeStartDate: Optional[str | datetime] = None,
-            changeEndDate: Optional[str | datetime] = None,
-            cveId: Optional[str] = None,
-            eventName: Optional[str] = None,
-            resultsPerPage: int = 5000,
-            startIndex: int = 0,
-            raw_json_response: bool = False
+        self,
+        changeStartDate: Optional[str | datetime] = None,
+        changeEndDate: Optional[str | datetime] = None,
+        cveId: Optional[str] = None,
+        eventName: Optional[str] = None,
+        resultsPerPage: int = 5000,
+        startIndex: int = 0,
+        raw_json_response: bool = False,
     ) -> Dict[str, int | str | List[Dict[str, Dict[str, str | List[Dict[str, str]]]]]]:
         """
         Paginated query for changes to the NVD database matching the relevant parameters.
@@ -313,13 +313,19 @@ class NVDClient:
         """
 
         if sum([1 for p in (changeStartDate, changeEndDate) if p is not None]) == 1:
-            raise InvalidParametersException("If filtering by the change date, both changeStartDate and changeEndDate are required.")
+            raise InvalidParametersException(
+                "If filtering by the change date, both changeStartDate and changeEndDate are required."
+            )
 
         if resultsPerPage > 5000:
-            raise InvalidParametersException("The maximum allowable limit for resultsPerPage parameter is 5000")
+            raise InvalidParametersException(
+                "The maximum allowable limit for resultsPerPage parameter is 5000"
+            )
 
         if startIndex < 0:
-            raise InvalidParametersException("startIndex parameter must be a non-negative integer.")
+            raise InvalidParametersException(
+                "startIndex parameter must be a non-negative integer."
+            )
 
         params = {
             "startIndex": startIndex,
@@ -335,7 +341,6 @@ class NVDClient:
         if eventName is not None:
             params["eventName"] = eventName
 
-
         res = self._get("/cvehistory", params)
 
         if not raw_json_response:
@@ -346,21 +351,22 @@ class NVDClient:
                     elem.get("change", {}).get("cveChangeId"),
                     elem.get("change", {}).get("sourceIdentifier"),
                     elem.get("change", {}).get("created"),
-                    elem.get("change", {}).get("details")
-                ) for elem in res.get("cveChanges", [])
+                    elem.get("change", {}).get("details"),
+                )
+                for elem in res.get("cveChanges", [])
             ]
 
         return res
 
     def cve_history_all(
-            self,
-            changeStartDate: Optional[str | datetime] = None,
-            changeEndDate: Optional[str | datetime] = None,
-            cveId: Optional[str] = None,
-            eventName: Optional[str] = None,
-            resultsPerPage: int = 5000,
-            startIndex: int = 0,
-            raw_json_response: bool = False
+        self,
+        changeStartDate: Optional[str | datetime] = None,
+        changeEndDate: Optional[str | datetime] = None,
+        cveId: Optional[str] = None,
+        eventName: Optional[str] = None,
+        resultsPerPage: int = 5000,
+        startIndex: int = 0,
+        raw_json_response: bool = False,
     ) -> List[ChangeItem] | List[Dict[str, Dict[str, str | List[Dict[str, str]]]]]:
         """
         Retrieves all change events in NVD matching the passed parameters.
@@ -382,11 +388,13 @@ class NVDClient:
             eventName=eventName,
             resultsPerPage=resultsPerPage,
             startIndex=startIndex,
-            raw_json_response=raw_json_response
+            raw_json_response=raw_json_response,
         )
 
         changes = []
-        while resp.get("totalResults", 0) > resp.get("resultsPerPage", 0) * resp.get("startIndex", 0) + resp.get("resultsPerPage", 0):
+        while resp.get("totalResults", 0) > resp.get("resultsPerPage", 0) * resp.get(
+            "startIndex", 0
+        ) + resp.get("resultsPerPage", 0):
             changes += resp.get("cveChanges", [])
             resp = self.cve_history(
                 changeStartDate=changeStartDate,
@@ -395,7 +403,7 @@ class NVDClient:
                 eventName=eventName,
                 resultsPerPage=resultsPerPage,
                 startIndex=startIndex,
-                raw_json_response=raw_json_response
+                raw_json_response=raw_json_response,
             )
 
         changes += resp.get("cveChanges", [])

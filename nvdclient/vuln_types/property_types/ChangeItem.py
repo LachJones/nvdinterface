@@ -6,11 +6,11 @@ from uuid import UUID
 class ChangeDetail:
 
     def __init__(
-            self,
-            change_type: str,
-            action: Optional[str] = None,
-            oldValue: Optional[str] = None,
-            newValue: Optional[str] = None,
+        self,
+        change_type: str,
+        action: Optional[str] = None,
+        oldValue: Optional[str] = None,
+        newValue: Optional[str] = None,
     ):
         self.type = change_type
         self.action = action
@@ -21,13 +21,13 @@ class ChangeDetail:
 class ChangeItem:
 
     def __init__(
-            self,
-            cveId: str,
-            eventName: str,
-            cveChangeId: str,
-            sourceIdentifier: str,
-            created: Optional[datetime | str] = None,
-            details: Optional[List[Dict[str, str] | ChangeDetail]] = None
+        self,
+        cveId: str,
+        eventName: str,
+        cveChangeId: str,
+        sourceIdentifier: str,
+        created: Optional[datetime | str] = None,
+        details: Optional[List[Dict[str, str] | ChangeDetail]] = None,
     ):
         self.details = []
         if details is not None:
@@ -37,20 +37,26 @@ class ChangeItem:
                 elif isinstance(detail, Dict):
                     self.details.append(
                         ChangeDetail(
-                            detail.get('type'),
-                            detail.get('action'),
-                            detail.get('oldValue'),
-                            detail.get('newValue'),
+                            detail.get("type"),
+                            detail.get("action"),
+                            detail.get("oldValue"),
+                            detail.get("newValue"),
                         )
                     )
                 else:
-                    raise TypeError(f"details list must be a List of Dict's or nvdclient.ChangeDetail's")
+                    raise TypeError(
+                        f"details list must be a List of Dict's or nvdclient.ChangeDetail's"
+                    )
 
         self._eventName = eventName
         self._cveId = cveId
         self._cveChangeId = UUID(cveChangeId)
         self._sourceIdentifier = sourceIdentifier
-        self._created = created if isinstance(created, datetime) else datetime.fromisoformat(created)
+        self._created = (
+            created
+            if isinstance(created, datetime)
+            else datetime.fromisoformat(created)
+        )
 
     @property
     def event_name(self):

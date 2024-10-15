@@ -7,26 +7,26 @@ from .BaseCVSSMetric import BaseCVSSMetric
 class CVSSMetricV2(BaseCVSSMetric):
 
     def __init__(
-            self,
-            accessVector: Optional[str] = None,
-            accessComplexity: Optional[str] = None,
-            authentication: Optional[str] = None,
-            confidentialityImpact: Optional[str] = None,
-            integrityImpact: Optional[str] = None,
-            availabilityImpact: Optional[str] = None,
-            baseScore: Optional[float] = None,
-            exploitability: Optional[str] = None,
-            remediationLevel: Optional[str] = None,
-            reportConfidence: Optional[str] = None,
-            temporalScore: Optional[float] = None,
-            collateralDamagepotential: Optional[str] = None,
-            targetDistribution: Optional[str] = None,
-            confidentialityRequirement: Optional[str] = None,
-            integrityRequirement: Optional[str] = None,
-            availabilityRequirement: Optional[str] = None,
-            environmentalScore: Optional[float] = None,
-            vectorString: Optional[str] = None,
-            **kwargs
+        self,
+        accessVector: Optional[str] = None,
+        accessComplexity: Optional[str] = None,
+        authentication: Optional[str] = None,
+        confidentialityImpact: Optional[str] = None,
+        integrityImpact: Optional[str] = None,
+        availabilityImpact: Optional[str] = None,
+        baseScore: Optional[float] = None,
+        exploitability: Optional[str] = None,
+        remediationLevel: Optional[str] = None,
+        reportConfidence: Optional[str] = None,
+        temporalScore: Optional[float] = None,
+        collateralDamagepotential: Optional[str] = None,
+        targetDistribution: Optional[str] = None,
+        confidentialityRequirement: Optional[str] = None,
+        integrityRequirement: Optional[str] = None,
+        availabilityRequirement: Optional[str] = None,
+        environmentalScore: Optional[float] = None,
+        vectorString: Optional[str] = None,
+        **kwargs,
     ):
         super().__init__(
             accessVector,
@@ -38,7 +38,7 @@ class CVSSMetricV2(BaseCVSSMetric):
             integrityRequirement,
             availabilityRequirement,
             environmentalScore,
-            vectorString
+            vectorString,
         )
         self._authentication = authentication
         self._confidentialityImpact = confidentialityImpact
@@ -55,7 +55,9 @@ class CVSSMetricV2(BaseCVSSMetric):
         self._version = "2.0"
 
     @property
-    def access_vector(self) -> Optional[Literal["NETWORK", "ADJACENT_NETWORK", "LOCAL"]]:
+    def access_vector(
+        self,
+    ) -> Optional[Literal["NETWORK", "ADJACENT_NETWORK", "LOCAL"]]:
         return self.attack_vector
 
     @property
@@ -67,7 +69,9 @@ class CVSSMetricV2(BaseCVSSMetric):
         return self._authentication
 
     @property
-    def confidentiality_impact(self) -> Optional[Literal["NONE", "PARTIAL", "COMPLETE"]]:
+    def confidentiality_impact(
+        self,
+    ) -> Optional[Literal["NONE", "PARTIAL", "COMPLETE"]]:
         return self._confidentialityImpact
 
     @property
@@ -83,16 +87,27 @@ class CVSSMetricV2(BaseCVSSMetric):
         return self._baseScore
 
     @property
-    def exploitability(self) -> Optional[Literal["UNPROVEN", "PROOF_OF_CONCEPT", "FUNCTIONAL", "HIGH", "NOT_DEFINED"]]:
+    def exploitability(
+        self,
+    ) -> Optional[
+        Literal["UNPROVEN", "PROOF_OF_CONCEPT", "FUNCTIONAL", "HIGH", "NOT_DEFINED"]
+    ]:
         return self._exploitability
 
     @property
-    def remediation_level(self) -> Optional[
-        Literal["OFFICIAL_FIX", "TEMPORARY_FIX", "WORKAROUND", "UNAVAILABLE", "NOT_DEFINED"]]:
+    def remediation_level(
+        self,
+    ) -> Optional[
+        Literal[
+            "OFFICIAL_FIX", "TEMPORARY_FIX", "WORKAROUND", "UNAVAILABLE", "NOT_DEFINED"
+        ]
+    ]:
         return self._remediationLevel
 
     @property
-    def report_confidence(self) -> Optional[Literal["UNCONFIRMED", "UNCORROBORATED", "CONFIRMED", "NOT_DEFINED"]]:
+    def report_confidence(
+        self,
+    ) -> Optional[Literal["UNCONFIRMED", "UNCORROBORATED", "CONFIRMED", "NOT_DEFINED"]]:
         return self._reportConfidence
 
     @property
@@ -104,19 +119,27 @@ class CVSSMetricV2(BaseCVSSMetric):
         return self._collateralDamagepotential
 
     @property
-    def target_distribution(self) -> Optional[Literal["NONE", "LOW", "MEDIUM", "HIGH", "NOT_DEFINED"]]:
+    def target_distribution(
+        self,
+    ) -> Optional[Literal["NONE", "LOW", "MEDIUM", "HIGH", "NOT_DEFINED"]]:
         return self._targetDistribution
 
     @property
-    def confidentiality_requirement(self) -> Optional[Literal["LOW", "MEDIUM", "HIGH", "NOT_DEFINED"]]:
+    def confidentiality_requirement(
+        self,
+    ) -> Optional[Literal["LOW", "MEDIUM", "HIGH", "NOT_DEFINED"]]:
         return self._confidentialityRequirement
 
     @property
-    def integrity_requirement(self) -> Optional[Literal["LOW", "MEDIUM", "HIGH", "NOT_DEFINED"]]:
+    def integrity_requirement(
+        self,
+    ) -> Optional[Literal["LOW", "MEDIUM", "HIGH", "NOT_DEFINED"]]:
         return self._integrityRequirement
 
     @property
-    def availability_requirement(self) -> Optional[Literal["LOW", "MEDIUM", "HIGH", "NOT_DEFINED"]]:
+    def availability_requirement(
+        self,
+    ) -> Optional[Literal["LOW", "MEDIUM", "HIGH", "NOT_DEFINED"]]:
         return self._availabilityRequirement
 
     @property
@@ -127,5 +150,6 @@ class CVSSMetricV2(BaseCVSSMetric):
     def vector(self) -> str:
         if not re.match(self._vector_pattern, self._vectorString):
             raise ValueError(
-                f"Vector string does not match required pattern.\nPattern: {self._vector_pattern}\nVector string: {self._vectorString}")
+                f"Vector string does not match required pattern.\nPattern: {self._vector_pattern}\nVector string: {self._vectorString}"
+            )
         return self._vectorString

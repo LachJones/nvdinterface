@@ -5,10 +5,7 @@ from typing import Union
 class VendorComment:
 
     def __init__(
-            self,
-            organization: str,
-            comment: str,
-            last_modified: Union[str, datetime]
+        self, organization: str, comment: str, last_modified: Union[str, datetime]
     ):
         """
 

@@ -9,7 +9,9 @@ from . import (
     CVSSMetricV30,
     Weakness,
     Configuration,
-    VendorComment, Description, Reference
+    VendorComment,
+    Description,
+    Reference,
 )
 
 # ref https://csrc.nist.gov/schema/nvd/api/2.0/cve_api_json_2.0.schema
@@ -32,8 +34,9 @@ _valid_cve_props = (
     "metrics",
     "weaknesses",
     "configurations",
-    "vendorComments"
+    "vendorComments",
 )
+
 
 class CVE:
 
@@ -41,7 +44,12 @@ class CVE:
         # handle common errors
         if isinstance(args, dict) and kwargs == {}:
             dat = args
-        elif isinstance(args, tuple) and len(args) == 1 and isinstance(args[0], dict) and kwargs == {}:
+        elif (
+            isinstance(args, tuple)
+            and len(args) == 1
+            and isinstance(args[0], dict)
+            and kwargs == {}
+        ):
             dat = args[0]
         else:
             dat = kwargs
@@ -50,9 +58,8 @@ class CVE:
                 raise ValueError(
                     f"'{k}' is not a valid property for a CVE object.\n"
                     f"It must be one of {_valid_cve_props}"
-                    )
+                )
             setattr(self, k, v)
-
 
     @property
     def id_str(self) -> str:
@@ -143,14 +150,33 @@ class CVE:
         return None
 
     @property
-    def cve_tags(self) -> Optional[List[Dict[str, str | List[Literal["unsupported-when-assigned", "exclusively-hosted-service", "disputed"]]]]]:
+    def cve_tags(
+        self,
+    ) -> Optional[
+        List[
+            Dict[
+                str,
+                str
+                | List[
+                    Literal[
+                        "unsupported-when-assigned",
+                        "exclusively-hosted-service",
+                        "disputed",
+                    ]
+                ],
+            ]
+        ]
+    ]:
         if hasattr(self, "cveTags"):
             return self.cveTags
         return None
 
     @property
     def descriptions_list(self) -> List[Description]:
-        return [Description(lang=desc.get("lang"), value=desc.get("value")) for desc in self.descriptions]
+        return [
+            Description(lang=desc.get("lang"), value=desc.get("value"))
+            for desc in self.descriptions
+        ]
 
     @property
     def references_list(self) -> List[Reference]:
@@ -159,7 +185,8 @@ class CVE:
                 source=ref.get("source"),
                 tags=ref.get("tags"),
                 url=ref.get("url"),
-            ) for ref in self.references
+            )
+            for ref in self.references
         ]
 
     @property
@@ -179,11 +206,7 @@ class CVE:
     @property
     def weaknesses_list(self) -> List[Weakness]:
         return [
-            Weakness(
-                elem.get("source", {}),
-                elem.get("type"),
-                elem.get("description")
-            )
+            Weakness(elem.get("source", {}), elem.get("type"), elem.get("description"))
             for elem in self.weaknesses
         ]
 

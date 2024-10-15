@@ -11,5 +11,5 @@ __all__ = [
     "CVSSMetricV30",
     "CVSSMetricV31",
     "CVSSMetricV40",
-    "build_from_api_response"
+    "build_from_api_response",
 ]

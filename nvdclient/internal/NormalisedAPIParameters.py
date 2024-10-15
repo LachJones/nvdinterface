@@ -10,48 +10,54 @@ class NormalisedAPIParameters:
     """
 
     def __init__(
-            self,
-            cpeName: Optional[str] = None,
-            cveId: Optional[str] = None,
-            cveTag: Optional[str] = None,
-            cvssV2Metrics: Optional[str] = None,
-            cvssV2Severity: Optional[str] = None,
-            cvssV3Metrics: Optional[str] = None,
-            cvssV3Severity: Optional[str] = None,
-            cvssV4Metrics: Optional[str] = None,
-            cvssV4Severity: Optional[str] = None,
-            cweId: Optional[str] = None,
-            hasCertAlerts: Optional[bool] = False,
-            hasCertNotes: Optional[bool] = False,
-            hasKev: Optional[bool] = False,
-            hasOval: Optional[bool] = False,
-            isVulnerable: Optional[bool] = None,
-            keywordExactMatch: bool = False,
-            keywordSearch: Optional[str] = None,
-            lastModStartDate: Optional[str | datetime] = None,
-            lastModEndDate: Optional[str | datetime] = None,
-            noRejected: Optional[bool] = False,
-            pubStartDate: Optional[str | datetime] = None,
-            pubEndDate: Optional[str | datetime] = None,
-            resultsPerPage: Optional[int] = 2000,
-            startIndex: Optional[int] = None,
-            sourceIdentifier: Optional[str] = None,
-            versionEnd: Optional[str] = None,
-            versionEndType: Optional[str] = None,
-            versionStart: Optional[str] = None,
-            versionStartType: Optional[str] = None,
-            virtualMatchString: Optional[str] = None
+        self,
+        cpeName: Optional[str] = None,
+        cveId: Optional[str] = None,
+        cveTag: Optional[str] = None,
+        cvssV2Metrics: Optional[str] = None,
+        cvssV2Severity: Optional[str] = None,
+        cvssV3Metrics: Optional[str] = None,
+        cvssV3Severity: Optional[str] = None,
+        cvssV4Metrics: Optional[str] = None,
+        cvssV4Severity: Optional[str] = None,
+        cweId: Optional[str] = None,
+        hasCertAlerts: Optional[bool] = False,
+        hasCertNotes: Optional[bool] = False,
+        hasKev: Optional[bool] = False,
+        hasOval: Optional[bool] = False,
+        isVulnerable: Optional[bool] = None,
+        keywordExactMatch: bool = False,
+        keywordSearch: Optional[str] = None,
+        lastModStartDate: Optional[str | datetime] = None,
+        lastModEndDate: Optional[str | datetime] = None,
+        noRejected: Optional[bool] = False,
+        pubStartDate: Optional[str | datetime] = None,
+        pubEndDate: Optional[str | datetime] = None,
+        resultsPerPage: Optional[int] = 2000,
+        startIndex: Optional[int] = None,
+        sourceIdentifier: Optional[str] = None,
+        versionEnd: Optional[str] = None,
+        versionEndType: Optional[str] = None,
+        versionStart: Optional[str] = None,
+        versionStartType: Optional[str] = None,
+        virtualMatchString: Optional[str] = None,
     ):
 
         if isVulnerable and cpeName is None:
-            raise InvalidParametersException("If filtering by isVulnerable, cpeName is required.")
+            raise InvalidParametersException(
+                "If filtering by isVulnerable, cpeName is required."
+            )
 
         if keywordExactMatch is True and keywordSearch is None:
-            raise InvalidParametersException("If filtering by keywordExactMatch, keywordSearch is required.")
+            raise InvalidParametersException(
+                "If filtering by keywordExactMatch, keywordSearch is required."
+            )
 
         # if lastModStartDate or lastModEndDate are specified, ensure both are given.
         if sum([1 for v in (lastModStartDate, lastModEndDate) if v is None]) == 1:
-            raise InvalidParametersException("If filtering by the last modified date, both lastModStartDate and lastModEndDate are required.")
+            raise InvalidParametersException(
+                "If filtering by the last modified date, both lastModStartDate and lastModEndDate are required."
+            )
 
         if lastModStartDate is not None or lastModEndDate is not None:
             if isinstance(lastModStartDate, str):
@@ -65,7 +71,7 @@ class NormalisedAPIParameters:
                     f"LastModStartDate: {lastModStartDate.isoformat()}\n"
                     f"LastModEndDate: {lastModEndDate.isoformat()}\n"
                     f"Range: {(lastModEndDate - lastModStartDate).days} days."
-                    )
+                )
 
         # if pubStartDate or pubEndDate are specified, ensure both are given.
         if sum([1 for v in (pubStartDate, pubEndDate) if v is None]) == 1:
@@ -94,17 +100,24 @@ class NormalisedAPIParameters:
             raise InvalidParametersException("Cannot search for a negative startIndex.")
 
         if versionEnd is not None or versionEndType is not None:
-            if versionEnd is None or versionEndType is None or virtualMatchString is None:
+            if (
+                versionEnd is None
+                or versionEndType is None
+                or virtualMatchString is None
+            ):
                 raise InvalidParametersException(
                     "If filtering by the ending version, versionEnd, versionEndType, and virtualMatchString are required."
                 )
 
         if versionStart is not None or versionStartType is not None:
-            if versionStart is None or versionStartType is None or virtualMatchString is None:
+            if (
+                versionStart is None
+                or versionStartType is None
+                or virtualMatchString is None
+            ):
                 raise InvalidParametersException(
                     "If filtering by the starting version, versionStart, versionStartType, and virtualMatchString are required."
                 )
-
 
         # Now save all values
         self.cpeName = cpeName

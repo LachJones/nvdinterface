@@ -1,5 +1,6 @@
 from .BaseCVSSMetric import BaseCVSSMetric
 
+
 class CVSSMetricV40(BaseCVSSMetric):
 
     def __init__(self):

@@ -8,14 +8,14 @@ class CPEMatch:
     """
 
     def __init__(
-            self,
-            vulnerable: bool,
-            criteria: str,
-            matchCriteriaId: str,
-            versionStartExcluding: Optional[str] = None,
-            versionStartIncluding: Optional[str] = None,
-            versionEndExcluding: Optional[str] = None,
-            versionEndIncluding: Optional[str] = None
+        self,
+        vulnerable: bool,
+        criteria: str,
+        matchCriteriaId: str,
+        versionStartExcluding: Optional[str] = None,
+        versionStartIncluding: Optional[str] = None,
+        versionEndExcluding: Optional[str] = None,
+        versionEndIncluding: Optional[str] = None,
     ):
         self.is_vulnerable = vulnerable
         self.criteria = criteria
@@ -35,10 +35,10 @@ class ConfigurationNode:
     """
 
     def __init__(
-            self,
-            operator: Literal["AND", "OR"],
-            cpe_matches: List[CPEMatch],
-            negate: bool=False
+        self,
+        operator: Literal["AND", "OR"],
+        cpe_matches: List[CPEMatch],
+        negate: bool = False,
     ):
         self.operator = operator
         self.cpe_matches = cpe_matches
@@ -51,10 +51,10 @@ class Configuration:
     """
 
     def __init__(
-            self,
-            nodes: List[ConfigurationNode],
-            operator: Optional[Literal["AND", "OR"]],
-            negate: bool=False
+        self,
+        nodes: List[ConfigurationNode],
+        operator: Optional[Literal["AND", "OR"]],
+        negate: bool = False,
     ):
         self.nodes = nodes
         self.operator = operator
