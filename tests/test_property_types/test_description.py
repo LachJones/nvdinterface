@@ -1,7 +1,7 @@
 import json
 import unittest
 
-from vuln_types import Description
+from nvdclient.vuln_types import Description
 
 
 class TestDescription(unittest.TestCase):

@@ -1,7 +1,7 @@
 import json
 import unittest
 
-from vuln_types import Weakness
+from nvdclient.vuln_types import Weakness
 
 
 class TestWeakness(unittest.TestCase):

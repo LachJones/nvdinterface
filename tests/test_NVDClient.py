@@ -2,7 +2,7 @@ import unittest
 from datetime import datetime
 
 from nvdclient import NVDClient, CVE
-from vuln_types.property_types.ChangeItem import ChangeItem, ChangeDetail
+from nvdclient.vuln_types.property_types.ChangeItem import ChangeItem, ChangeDetail
 
 
 class TestNVDClient(unittest.TestCase):
