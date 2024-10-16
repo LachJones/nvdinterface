@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Optional, List, Dict
+from typing import Optional, List, Dict, Union
 from uuid import UUID
 
 
@@ -26,8 +26,8 @@ class ChangeItem:
         eventName: str,
         cveChangeId: str,
         sourceIdentifier: str,
-        created: Optional[datetime | str] = None,
-        details: Optional[List[Dict[str, str] | ChangeDetail]] = None,
+        created: Optional[Union[str, datetime]] = None,
+        details: Optional[List[Union[Dict[str, str], ChangeDetail]]] = None,
     ):
         self.details = []
         if details is not None:

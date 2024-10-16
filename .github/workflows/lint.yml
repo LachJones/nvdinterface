@@ -13,14 +13,13 @@ jobs:
       matrix:
         python-version: ["3.12"]
     steps:
+      - uses: actions/checkout@v4
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
           architecture: x64
-      - name: info
-        run: pwd && ls -lah
       - uses: psf/black@stable
         with:
           options: "--check --verbose"
-          src: "nvdclient/"
+          src: "./nvdclient"

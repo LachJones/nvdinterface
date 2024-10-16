@@ -2,8 +2,8 @@ import json
 import unittest
 from datetime import datetime, date
 
-from nvdclient import CVE, CVSSMetricV2, CVSSMetricV30, CVSSMetricV31, CVSSMetricV2, CVSSMetricV40
-from nvdclient.vuln_types import Reference, Weakness
+from nvdclient import CVE
+from nvdclient.vuln_types import Reference, Weakness, BaseCVSSMetric
 
 
 class TestCVE(unittest.TestCase):
@@ -49,7 +49,7 @@ class TestCVE(unittest.TestCase):
         self.assertIsInstance(cve.metrics_list, list)
         self.assertGreater(len(cve.metrics_list), 0)
         for metric in cve.metrics_list:
-            self.assertIsInstance(metric, CVSSMetricV2 | CVSSMetricV30 | CVSSMetricV31 | CVSSMetricV40)
+            self.assertIsInstance(metric, BaseCVSSMetric)
         self.assertIsInstance(cve.weaknesses_list, list)
         self.assertEqual(1, len(cve.weaknesses_list))
         for elem in cve.weaknesses_list:
