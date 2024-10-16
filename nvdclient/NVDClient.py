@@ -1,4 +1,4 @@
-from typing import Optional, Dict, Any, List
+from typing import Optional, Dict, Any, List, Union
 
 from datetime import datetime
 import requests
@@ -55,11 +55,11 @@ class NVDClient:
         isVulnerable: Optional[bool] = None,
         keywordExactMatch: Optional[bool] = None,
         keywordSearch: Optional[str] = None,
-        lastModStartDate: Optional[str | datetime] = None,
-        lastModEndDate: Optional[str | datetime] = None,
+        lastModStartDate: Optional[Union[str, datetime]] = None,
+        lastModEndDate: Optional[Union[str, datetime]] = None,
         noRejected: Optional[bool] = None,
-        pubStartDate: Optional[str | datetime] = None,
-        pubEndDate: Optional[str | datetime] = None,
+        pubStartDate: Optional[Union[str, datetime]] = None,
+        pubEndDate: Optional[Union[str, datetime]] = None,
         resultsPerPage: int = 2000,
         startIndex: int = 0,
         sourceIdentifier: Optional[str] = None,
@@ -169,11 +169,11 @@ class NVDClient:
         isVulnerable: Optional[bool] = None,
         keywordExactMatch: Optional[bool] = None,
         keywordSearch: Optional[str] = None,
-        lastModStartDate: Optional[str | datetime] = None,
-        lastModEndDate: Optional[str | datetime] = None,
+        lastModStartDate: Optional[Union[str, datetime]] = None,
+        lastModEndDate: Optional[Union[str, datetime]] = None,
         noRejected: Optional[bool] = None,
-        pubStartDate: Optional[str | datetime] = None,
-        pubEndDate: Optional[str | datetime] = None,
+        pubStartDate: Optional[Union[str, datetime]] = None,
+        pubEndDate: Optional[Union[str, datetime]] = None,
         sourceIdentifier: Optional[str] = None,
         versionEnd: Optional[str] = None,
         versionEndType: Optional[str] = None,
@@ -181,7 +181,7 @@ class NVDClient:
         versionStartType: Optional[str] = None,
         virtualMatchString: Optional[str] = None,
         raw_json_response: bool = False,
-    ) -> List[CVE] | List[Dict[str, Any]]:
+    ) -> Union[List[CVE], List[Dict[str, Any]]]:
         """
         Search the NVD CVE API for all results matching query terms.
 
@@ -291,14 +291,17 @@ class NVDClient:
 
     def cve_history(
         self,
-        changeStartDate: Optional[str | datetime] = None,
-        changeEndDate: Optional[str | datetime] = None,
+        changeStartDate: Optional[Union[str, datetime]] = None,
+        changeEndDate: Optional[Union[str, datetime]] = None,
         cveId: Optional[str] = None,
         eventName: Optional[str] = None,
         resultsPerPage: int = 5000,
         startIndex: int = 0,
         raw_json_response: bool = False,
-    ) -> Dict[str, int | str | List[Dict[str, Dict[str, str | List[Dict[str, str]]]]]]:
+    ) -> Dict[
+        str,
+        Union[int, str, List[Dict[str, Dict[str, Union[str, List[Dict[str, str]]]]]]],
+    ]:
         """
         Paginated query for changes to the NVD database matching the relevant parameters.
 
@@ -360,14 +363,16 @@ class NVDClient:
 
     def cve_history_all(
         self,
-        changeStartDate: Optional[str | datetime] = None,
-        changeEndDate: Optional[str | datetime] = None,
+        changeStartDate: Optional[Union[str, datetime]] = None,
+        changeEndDate: Optional[Union[str, datetime]] = None,
         cveId: Optional[str] = None,
         eventName: Optional[str] = None,
         resultsPerPage: int = 5000,
         startIndex: int = 0,
         raw_json_response: bool = False,
-    ) -> List[ChangeItem] | List[Dict[str, Dict[str, str | List[Dict[str, str]]]]]:
+    ) -> Union[
+        List[ChangeItem], List[Dict[str, Dict[str, Union[str, List[Dict[str, str]]]]]]
+    ]:
         """
         Retrieves all change events in NVD matching the passed parameters.
 

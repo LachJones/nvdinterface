@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from typing import Optional, Dict
+from typing import Optional, Dict, Union
 
 from .Exceptions import InvalidParametersException
 
@@ -28,11 +28,11 @@ class NormalisedAPIParameters:
         isVulnerable: Optional[bool] = None,
         keywordExactMatch: bool = False,
         keywordSearch: Optional[str] = None,
-        lastModStartDate: Optional[str | datetime] = None,
-        lastModEndDate: Optional[str | datetime] = None,
+        lastModStartDate: Optional[Union[str, datetime]] = None,
+        lastModEndDate: Optional[Union[str, datetime]] = None,
         noRejected: Optional[bool] = False,
-        pubStartDate: Optional[str | datetime] = None,
-        pubEndDate: Optional[str | datetime] = None,
+        pubStartDate: Optional[Union[str, datetime]] = None,
+        pubEndDate: Optional[Union[str, datetime]] = None,
         resultsPerPage: Optional[int] = 2000,
         startIndex: Optional[int] = None,
         sourceIdentifier: Optional[str] = None,
@@ -151,5 +151,5 @@ class NormalisedAPIParameters:
         self.versionStartType = versionStartType
         self.virtualMatchString = virtualMatchString
 
-    def get_all_used_params(self) -> Dict[str, str | bool]:
+    def get_all_used_params(self) -> Dict[str, Union[str, bool]]:
         return {k: v for k, v in self.__dict__.items() if v is not None}

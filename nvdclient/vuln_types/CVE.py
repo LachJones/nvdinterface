@@ -1,5 +1,5 @@
 from datetime import datetime, date
-from typing import Optional, List, Dict, Literal
+from typing import Optional, List, Dict, Literal, Union
 
 from . import (
     BaseCVSSMetric,
@@ -156,13 +156,15 @@ class CVE:
         List[
             Dict[
                 str,
-                str
-                | List[
-                    Literal[
-                        "unsupported-when-assigned",
-                        "exclusively-hosted-service",
-                        "disputed",
-                    ]
+                Union[
+                    str,
+                    List[
+                        Literal[
+                            "unsupported-when-assigned",
+                            "exclusively-hosted-service",
+                            "disputed",
+                        ]
+                    ],
                 ],
             ]
         ]
