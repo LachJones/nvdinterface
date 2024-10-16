@@ -5,6 +5,7 @@ on:
     paths:
       - 'nvdclient/**'
       - 'tests/**'
+      - '.github/workflows/test.yml'
 
 jobs:
   unittest:

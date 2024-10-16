@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'nvdclient/**.py'
+      - '.github/workflows/lint.yml'
 
 jobs:
   black:
