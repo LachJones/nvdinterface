@@ -3,10 +3,10 @@ from typing import Optional, Dict, Any, List
 from datetime import datetime
 import requests
 
-from vuln_types.property_types.ChangeItem import ChangeItem
+from .internal import NormalisedAPIParameters
 from .internal.Exceptions import InvalidParametersException
 from .vuln_types import CVE
-from nvdclient.internal import NormalisedAPIParameters
+from .vuln_types.property_types.ChangeItem import ChangeItem
 
 
 class NVDClient:
