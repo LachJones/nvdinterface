@@ -23,7 +23,6 @@ This project is currently in the early stages of development and will hopefully 
 ## Example Usage
 
 ```pycon
->>> from nvdclient import NVDClient
->>> client = NVDClient("REPLACE_WITH_API_KEY")
->>> client.search_cves(cveId="CVE-2021-44228")
+>>> from nvdclient import search_cves
+>>> search_cves(cveId="CVE-2021-44228")
 ```
