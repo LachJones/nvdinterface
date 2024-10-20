@@ -39,8 +39,14 @@ _valid_cve_props = (
 
 
 class CVE:
+    """
+    Represents details for a specific CVE.
+    """
 
     def __init__(self, *args, **kwargs):
+        """
+        Pass a dictionary of key, value pairs. If these are valid keys, they will be set as properties.
+        """
         # handle common errors
         if isinstance(args, dict) and kwargs == {}:
             dat = args
