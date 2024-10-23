@@ -25,7 +25,7 @@ Issues = "https://github.com/lachjones/nvdclient/issues"
 python = ">=3.8"
 requests = ">=2.0.0"
 datetime = "^5.5"
-iso639-lang = "^2.4.2"
+iso639-lang = "^2.5.0"
 
 [tool.poetry.group.tests]
 optional = true

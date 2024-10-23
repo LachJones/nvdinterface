@@ -322,13 +322,13 @@ type = ["pytest-mypy"]
 
 [[package]]
 name = "iso639-lang"
-version = "2.4.2"
+version = "2.5.0"
 description = "A fast, simple ISO 639 library."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "iso639_lang-2.4.2-py3-none-any.whl", hash = "sha256:971708b4ab2b149da1aa519c48e62ceb450548311409d28859bd4cb1cb37a011"},
-    {file = "iso639_lang-2.4.2.tar.gz", hash = "sha256:f1bbed6a80bb177e54b02f9eba0e4900d21475bc720158c7ec7c493a31a8d612"},
+    {file = "iso639_lang-2.5.0-py3-none-any.whl", hash = "sha256:b7ff957553eafbdc1c4a4fb4510e8f66f552b250d68c886c72baa12394ac5ed3"},
+    {file = "iso639_lang-2.5.0.tar.gz", hash = "sha256:14efc3269dac8664dc6f87e9ecfbbdc39a36d18f999e79c7aa9ebfafaa6e2eb3"},
 ]
 
 [package.dependencies]
@@ -785,4 +785,4 @@ testing = ["coverage[toml]", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8"
-content-hash = "4e7d97640f339ad055099a1016b9630a564fb416fd383ac310c0d67565d4de59"
+content-hash = "d8fb924917f87ce372ce10293c56b039d76ccc115a594351ce9cedba57c59a14"
