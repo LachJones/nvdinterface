@@ -6,6 +6,8 @@ on:
       - 'nvdclient/**'
       - 'tests/**'
       - '.github/workflows/test.yml'
+      - 'pyproject.toml'
+      - 'poetry.lock'
 
 jobs:
   unittest:
