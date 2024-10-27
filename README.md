@@ -6,7 +6,21 @@ This project is currently in the early stages of development and will hopefully 
 
 ---
 
-## Quick Start
+## Install
+
+```shell
+(.venv) $ pip install nvdclient
+```
+
+
+## Example Usage
+
+```pycon
+>>> from nvdclient import search_cves
+>>> search_cves(cveId="CVE-2021-44228")
+```
+
+## Building from Source
 
 1. Clone the repository
 2. Enter repository directory
@@ -18,11 +32,4 @@ This project is currently in the early stages of development and will hopefully 
 (.venv) $ git clone https://github.com/LachJones/nvdclient.git
 (.venv) $ cd nvdclient
 (.venv) $ python -m poetry install
-```
-
-## Example Usage
-
-```pycon
->>> from nvdclient import search_cves
->>> search_cves(cveId="CVE-2021-44228")
 ```
