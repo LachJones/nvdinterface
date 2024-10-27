@@ -1,5 +1,8 @@
 from .Configurations import Configuration, ConfigurationNode, CPEMatch
 from .Description import Description
+from .Reference import Reference
+from .VendorComment import VendorComment
+from .Weakness import Weakness
 from .metrics import (
     BaseCVSSMetric,
     CVSSMetricV2,
@@ -7,9 +10,6 @@ from .metrics import (
     CVSSMetricV31,
     CVSSMetricV40,
 )
-from .Reference import Reference
-from .VendorComment import VendorComment
-from .Weakness import Weakness
 
 __all__ = [
     "Configuration",

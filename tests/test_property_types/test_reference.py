@@ -1,7 +1,7 @@
 import json
 import unittest
 
-from nvdclient.vuln_types import Reference
+from nvdinterface.vuln_types import Reference
 
 
 class TestReference(unittest.TestCase):

@@ -2,8 +2,8 @@ import json
 import unittest
 from datetime import datetime, date
 
-from nvdclient import CVE
-from nvdclient.vuln_types import Reference, Weakness, BaseCVSSMetric
+from nvdinterface import CVE
+from nvdinterface.vuln_types import Reference, Weakness, BaseCVSSMetric
 
 
 class TestCVE(unittest.TestCase):

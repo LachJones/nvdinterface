@@ -1,4 +1,4 @@
-from nvdclient.vuln_types.property_types import (
+from nvdinterface.vuln_types.property_types import (
     Configuration,
     Description,
     BaseCVSSMetric,
