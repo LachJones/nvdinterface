@@ -1,6 +1,6 @@
+from datetime import datetime
 from typing import Optional, Dict, Any, List, Union
 
-from datetime import datetime
 import requests
 
 from .internal import NormalisedAPIParameters

@@ -45,7 +45,7 @@ class ChangeItem:
                     )
                 else:
                     raise TypeError(
-                        f"details list must be a List of Dict's or nvdclient.ChangeDetail's"
+                        f"details list must be a List of Dict's or nvdinterface.ChangeDetail's"
                     )
 
         self._eventName = eventName

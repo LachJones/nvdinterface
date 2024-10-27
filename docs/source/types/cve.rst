@@ -5,7 +5,7 @@ CVE
 
 .. module:: CVE
 
-.. autoclass:: nvdclient.CVE
+.. autoclass:: nvdinterface.CVE
     :members:
     :inherited-members:
     :show-inheritance:

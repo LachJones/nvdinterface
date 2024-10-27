@@ -1,4 +1,4 @@
-Welcome to nvdclient's documentation!
+Welcome to nvdinterface's documentation!
 =====================================
 
 Release v\ |version|. (:ref:`Installation <installation>`)
@@ -6,7 +6,7 @@ Release v\ |version|. (:ref:`Installation <installation>`)
 The User Guide
 --------------
 
-For instructions on getting started with nvdclient, start here.
+For instructions on getting started with nvdinterface, start here.
 
 .. toctree::
     :maxdepth: 1

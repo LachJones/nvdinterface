@@ -7,19 +7,19 @@ CVSS Types
 
 Library functions may return objects of the following types:
 
-.. autoclass:: nvdclient.CVSSMetricV2
+.. autoclass:: nvdinterface.CVSSMetricV2
     :members:
     :inherited-members:
     :show-inheritance:
-.. autoclass:: nvdclient.CVSSMetricV30
+.. autoclass:: nvdinterface.CVSSMetricV30
     :members:
     :inherited-members:
     :show-inheritance:
-.. autoclass:: nvdclient.CVSSMetricV31
+.. autoclass:: nvdinterface.CVSSMetricV31
     :members:
     :inherited-members:
     :show-inheritance:
-.. autoclass:: nvdclient.CVSSMetricV40
+.. autoclass:: nvdinterface.CVSSMetricV40
     :members:
     :inherited-members:
     :show-inheritance:

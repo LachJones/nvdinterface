@@ -1,11 +1,11 @@
 .. _interface:
 
-NVDClient Interface
+NVD Interface
 -------------------
 
-.. automodule:: nvdclient
+.. automodule:: nvdinterface
 
-This part of the documentation covers all the functionality of NVDClient.
+This part of the documentation covers all the functionality of NV.
 
 Main Interface
 --------------

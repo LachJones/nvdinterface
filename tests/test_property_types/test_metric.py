@@ -1,10 +1,9 @@
 import json
 import unittest
-
 from warnings import warn
 
-from nvdclient.vuln_types import CVSSMetricV2, CVSSMetricV30, CVSSMetricV40, CVSSMetricV31
-from nvdclient.vuln_types.property_types.metrics import build_from_api_response
+from nvdinterface.vuln_types import CVSSMetricV2, CVSSMetricV31
+from nvdinterface.vuln_types.property_types.metrics import build_from_api_response
 
 
 class TestMetrics(unittest.TestCase):

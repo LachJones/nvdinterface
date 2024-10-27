@@ -1,8 +1,8 @@
 import json
 import unittest
 
-from nvdclient.vuln_types import Configuration
-from nvdclient.vuln_types.property_types import CPEMatch, ConfigurationNode
+from nvdinterface.vuln_types import Configuration
+from nvdinterface.vuln_types.property_types import CPEMatch, ConfigurationNode
 
 
 class TestCPEMatch(unittest.TestCase):

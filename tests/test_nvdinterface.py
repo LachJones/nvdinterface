@@ -1,11 +1,11 @@
 import unittest
 from datetime import datetime
 
-from nvdclient import CVE, search_cves, search_cves_all, cve_history, cve_history_all
-from nvdclient.vuln_types.property_types.ChangeItem import ChangeItem, ChangeDetail
+from nvdinterface import CVE, search_cves, search_cves_all, cve_history, cve_history_all
+from nvdinterface.vuln_types.property_types.ChangeItem import ChangeItem, ChangeDetail
 
 
-class TestNVDClient(unittest.TestCase):
+class TestNVDInterface(unittest.TestCase):
 
     @staticmethod
     def test_empty_instantiate():

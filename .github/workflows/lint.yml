@@ -3,7 +3,7 @@ name: Lint
 on:
   push:
     paths:
-      - 'nvdclient/**.py'
+      - '../../nvdinterface/**.py'
       - '.github/workflows/lint.yml'
 
 jobs:
@@ -22,4 +22,4 @@ jobs:
       - uses: psf/black@stable
         with:
           options: "--check --verbose"
-          src: "./nvdclient"
+          src: "./nvdinterface"

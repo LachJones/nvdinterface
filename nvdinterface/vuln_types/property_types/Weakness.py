@@ -31,7 +31,7 @@ class Weakness:
             self.descriptions = descriptions
         else:
             raise TypeError(
-                f"Parameter 'descriptions' must be a list of entirely Dict's or nvdclient.Description's."
+                f"Parameter 'descriptions' must be a list of entirely Dict's or nvdinterface.Description's."
             )
         self.source = source
         self.weakness_type = weakness_type

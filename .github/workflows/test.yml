@@ -3,7 +3,7 @@ name: Test
 on:
   push:
     paths:
-      - 'nvdclient/**'
+      - '../../nvdinterface/**'
       - 'tests/**'
       - '.github/workflows/test.yml'
       - 'pyproject.toml'
