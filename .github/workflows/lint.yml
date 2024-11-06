@@ -3,8 +3,10 @@ name: Lint
 on:
   push:
     paths:
-      - '../../nvdinterface/**.py'
+      - 'nvdinterface/**.py'
       - '.github/workflows/lint.yml'
+      - 'pyproject.toml'
+      - 'poetry.lock'
 
 jobs:
   black:
