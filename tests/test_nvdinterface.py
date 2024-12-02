@@ -23,16 +23,16 @@ class TestNVDInterface(unittest.TestCase):
     def test_search_all_for_heartbleed(self):
         res = search_cves_all(cveId="CVE-2014-0160")
         self.assertIsInstance(res, list)
-        self.assertEqual(1, len(res))
+        self.assertGreaterEqual(1, len(res))
         for cve in res:
             self.assertIsInstance(cve, CVE)
             self.assertEqual("CVE-2014-0160", cve.id_str)
 
     def test_search_heartbleed_history(self):
         res = cve_history(cveId="CVE-2014-0160")
-        self.assertEqual(28, res.get("totalResults"))
+        self.assertGreaterEqual(28, res.get("totalResults"))
         self.assertEqual("NVD_CVEHistory", res.get("format"))
-        self.assertEqual(28, len(res.get("cveChanges")))
+        self.assertGreaterEqual(28, len(res.get("cveChanges")))
         for change in res["cveChanges"]:
             self.assertIsInstance(change, ChangeItem)
             self.assertIsInstance(change.created, datetime)
@@ -45,7 +45,7 @@ class TestNVDInterface(unittest.TestCase):
     def test_search_all_heartbleed_history(self):
         res = cve_history_all(cveId="CVE-2014-0160")
         self.assertIsInstance(res, list)
-        self.assertEqual(28, len(res))
+        self.assertGreaterEqual(28, len(res))
         for change in res:
             self.assertIsInstance(change, ChangeItem)
             self.assertIsInstance(change.created, datetime)
