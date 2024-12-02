@@ -28,3 +28,5 @@ jobs:
           poetry install --no-interaction --with tests
       - name: Test with unittest
         run: poetry run python -m unittest discover tests/
+        env:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
