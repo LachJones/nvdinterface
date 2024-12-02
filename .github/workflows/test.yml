@@ -27,4 +27,6 @@ jobs:
           pip install --upgrade poetry
           poetry install --no-interaction --with tests
       - name: Test with unittest
+        with:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
         run: poetry run python -m unittest discover tests/

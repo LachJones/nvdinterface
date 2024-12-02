@@ -1,3 +1,4 @@
+import time
 from datetime import datetime
 from typing import Optional, Dict, Any, List, Union
 
@@ -9,7 +10,7 @@ from .vuln_types import CVE
 from .vuln_types.property_types.ChangeItem import ChangeItem
 
 
-def _get(endpoint: str, params: Optional[Dict] = None, api_version: str = "2.0") -> Any:
+def _get(endpoint: str, params: Optional[Dict[str, Any]] = None, headers: Optional[Dict[str, str]] = None, api_version: str = "2.0") -> Any:
     """
     Helper method for building and making GET requests.
     Intentionally does not perform any sort of error handling
@@ -23,6 +24,7 @@ def _get(endpoint: str, params: Optional[Dict] = None, api_version: str = "2.0")
     resp = requests.get(
         f"https://services.nvd.nist.gov/rest/json{endpoint}/{api_version}",
         params=params,
+        headers=headers
     )
     resp.raise_for_status()
     return resp.json()
@@ -59,6 +61,7 @@ def search_cves(
     versionStart: Optional[str] = None,
     versionStartType: Optional[str] = None,
     virtualMatchString: Optional[str] = None,
+    nvdApiKey: Optional[str] = None,
     raw_json_response: bool = False,
 ) -> Dict[str, Any]:
     """
@@ -95,6 +98,7 @@ def search_cves(
     :param versionStart: The virtualMatchString parameter may be combined with versionStart and versionStartType to return only the CVEs associated with CPEs in specific version ranges.
     :param versionStartType: The virtualMatchString parameter may be combined with versionStart and versionStartType to return only the CVEs associated with CPEs in specific version ranges.
     :param virtualMatchString: This parameter filters CVE more broadly than cpeName. The exact value of `cpe match string` is compared against the CPE Match Criteria present on CVE applicability statements.
+    :param nvdApiKey: Your API key for the NVD API.
     :param raw_json_response: Whether the resulting objects returned from the API should be converted to CVE objects. Otherwise they are left as JSON.
     :return: The CVE API returns seven primary objects in the body of the response: resultsPerPage, startIndex, totalResults, format, version, timestamp, and vulnerabilities.
     """
@@ -132,7 +136,7 @@ def search_cves(
         virtualMatchString,
     ).get_all_used_params()
 
-    res = _get("/cves", params)
+    res = _get("/cves", params=params, headers={'nvdApiKey': nvdApiKey})
 
     if not raw_json_response:
         res["vulnerabilities"] = [
@@ -171,6 +175,8 @@ def search_cves_all(
     versionStart: Optional[str] = None,
     versionStartType: Optional[str] = None,
     virtualMatchString: Optional[str] = None,
+    nvdApiKey: Optional[str] = None,
+    sleep_seconds_between_requests: Optional[int] = 6,
     raw_json_response: bool = False,
 ) -> Union[List[CVE], List[Dict[str, Any]]]:
     """
@@ -204,9 +210,14 @@ def search_cves_all(
     :param versionStart: The virtualMatchString parameter may be combined with versionStart and versionStartType to return only the CVEs associated with CPEs in specific version ranges.
     :param versionStartType: The virtualMatchString parameter may be combined with versionStart and versionStartType to return only the CVEs associated with CPEs in specific version ranges.
     :param virtualMatchString: This parameter filters CVE more broadly than cpeName. The exact value of `cpe match string` is compared against the CPE Match Criteria present on CVE applicability statements.
+    :param nvdApiKey: Your API key for the NVD API.
+    :param sleep_seconds_between_requests: The numebr of seconds to sleep between API requests. If an API key is not provided, a minumum value of 6 is enforced.
     :param raw_json_response: Whether the resulting objects returned from the API should be converted to CVE objects. Otherwise they are left as JSON.
     :return: The CVE API returns seven primary objects in the body of the response: resultsPerPage, startIndex, totalResults, format, version, timestamp, and vulnerabilities.
     """
+    if nvdApiKey is None and sleep_seconds_between_requests < 6:
+        sleep_seconds_between_requests = 6
+
     resp = search_cves(
         cpeName=cpeName,
         cveId=cveId,
@@ -236,6 +247,7 @@ def search_cves_all(
         versionStart=versionStart,
         versionStartType=versionStartType,
         virtualMatchString=virtualMatchString,
+        nvdApiKey=nvdApiKey,
         raw_json_response=raw_json_response,
     )
 
@@ -244,6 +256,7 @@ def search_cves_all(
         "startIndex", 0
     ) + resp.get("resultsPerPage", 0):
         vulns += resp.get("vulnerabilities", [])
+        time.sleep(sleep_seconds_between_requests)
         resp = search_cves(
             cpeName=cpeName,
             cveId=cveId,
@@ -288,6 +301,7 @@ def cve_history(
     eventName: Optional[str] = None,
     resultsPerPage: int = 5000,
     startIndex: int = 0,
+    nvdApiKey: Optional[str] = None,
     raw_json_response: bool = False,
 ) -> Dict[
     str,
@@ -302,6 +316,7 @@ def cve_history(
     :param eventName: This parameter returns all CVE associated with a **single** specific type of change event.
     :param resultsPerPage: The number of results to return per page (default 5000).
     :param startIndex: The index of the first page to return from (default 0).
+    :param nvdApiKey: Your API key for the NVD API.
     :param raw_json_response: If true, will return raw JSON response instead of converting to local classes.
     :return: A list of results that were returned from the NVD API matching the criteria.
     """
@@ -335,7 +350,7 @@ def cve_history(
     if eventName is not None:
         params["eventName"] = eventName
 
-    res = _get("/cvehistory", params)
+    res = _get("/cvehistory", params=params, headers={'nvdApiKey': nvdApiKey})
 
     if not raw_json_response:
         res["cveChanges"] = [
@@ -360,6 +375,8 @@ def cve_history_all(
     eventName: Optional[str] = None,
     resultsPerPage: int = 5000,
     startIndex: int = 0,
+    nvdApiKey: Optional[str] = None,
+    sleep_seconds_between_requests: Optional[int] = 6,
     raw_json_response: bool = False,
 ) -> Union[
     List[ChangeItem], List[Dict[str, Dict[str, Union[str, List[Dict[str, str]]]]]]
@@ -373,9 +390,14 @@ def cve_history_all(
     :param eventName: This parameter returns all CVE associated with a **single** specific type of change event.
     :param resultsPerPage: The number of results to return per page (default 5000).
     :param startIndex: The index of the first page to return from (default 0).
+    :param nvdApiKey: Your API key for the NVD API.
+    :param sleep_seconds_between_requests: The numebr of seconds to sleep between API requests. If an API key is not provided, a minumum value of 6 is enforced.
     :param raw_json_response: If true, will return raw JSON response instead of converting to local classes.
     :return: A list of results that were returned from the NVD API matching the criteria.
     """
+
+    if nvdApiKey is None and sleep_seconds_between_requests < 6:
+        sleep_seconds_between_requests = 6
 
     resp = cve_history(
         changeStartDate=changeStartDate,
@@ -392,6 +414,7 @@ def cve_history_all(
         "startIndex", 0
     ) + resp.get("resultsPerPage", 0):
         changes += resp.get("cveChanges", [])
+        time.sleep(sleep_seconds_between_requests)
         resp = cve_history(
             changeStartDate=changeStartDate,
             changeEndDate=changeEndDate,
@@ -399,6 +422,7 @@ def cve_history_all(
             eventName=eventName,
             resultsPerPage=resultsPerPage,
             startIndex=startIndex,
+            nvdApiKey=nvdApiKey,
             raw_json_response=raw_json_response,
         )
 
