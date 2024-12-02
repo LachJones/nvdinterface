@@ -12,7 +12,7 @@ class TestNvdEndpoints(unittest.TestCase):
     """
 
     def test_empty_request(self):
-        resp = requests.options(_url_base)
+        resp = requests.options(f"{_url_base}/cves/2.0")
 
         # ignore a 503 error, as these seem to be returned quite frequently and are not believed
         # to be caused by this library implementation.
