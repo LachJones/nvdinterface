@@ -10,7 +10,12 @@ from .vuln_types import CVE
 from .vuln_types.property_types.ChangeItem import ChangeItem
 
 
-def _get(endpoint: str, params: Optional[Dict[str, Any]] = None, headers: Optional[Dict[str, str]] = None, api_version: str = "2.0") -> Any:
+def _get(
+    endpoint: str,
+    params: Optional[Dict[str, Any]] = None,
+    headers: Optional[Dict[str, str]] = None,
+    api_version: str = "2.0",
+) -> Any:
     """
     Helper method for building and making GET requests.
     Intentionally does not perform any sort of error handling
@@ -24,7 +29,7 @@ def _get(endpoint: str, params: Optional[Dict[str, Any]] = None, headers: Option
     resp = requests.get(
         f"https://services.nvd.nist.gov/rest/json{endpoint}/{api_version}",
         params=params,
-        headers=headers
+        headers=headers,
     )
     resp.raise_for_status()
     return resp.json()
@@ -136,7 +141,7 @@ def search_cves(
         virtualMatchString,
     ).get_all_used_params()
 
-    res = _get("/cves", params=params, headers={'nvdApiKey': nvdApiKey})
+    res = _get("/cves", params=params, headers={"nvdApiKey": nvdApiKey})
 
     if not raw_json_response:
         res["vulnerabilities"] = [
@@ -350,7 +355,7 @@ def cve_history(
     if eventName is not None:
         params["eventName"] = eventName
 
-    res = _get("/cvehistory", params=params, headers={'nvdApiKey': nvdApiKey})
+    res = _get("/cvehistory", params=params, headers={"nvdApiKey": nvdApiKey})
 
     if not raw_json_response:
         res["cveChanges"] = [
