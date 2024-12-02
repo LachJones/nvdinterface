@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "nvdinterface"
-version = "0.4.0"
+version = "0.4.1"
 authors = [
     "Lachlan Jones",
 ]
@@ -25,9 +25,9 @@ Changelog = "https://github.com/LachJones/nvdinterface/tags"
 
 [tool.poetry.dependencies]
 python = ">=3.9"
-requests = ">=2.13.0"
-datetime = ">=5.5"
-iso639-lang = "^2.5.1"
+requests = "==2.32.3"
+datetime = "==5.5"
+iso639-lang = "==2.5.1"
 
 [tool.poetry.group.tests]
 optional = true
@@ -39,4 +39,4 @@ black = "==24.10.0"
 optional = true
 
 [tool.poetry.group.docs.dependencies]
-sphinx = "==7.4.7"
+sphinx = "==8.1.3"
