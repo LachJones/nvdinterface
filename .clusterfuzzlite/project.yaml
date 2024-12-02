@@ -1,0 +1,5 @@
+homepage: "https://github.com/LachJones/nvdinterface"
+language: python
+sanitizers:
+  - address
+main_repo: 'https://github.com/LachJones/nvdinterface'
