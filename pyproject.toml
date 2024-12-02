@@ -19,7 +19,9 @@ classifiers = [
 
 [project.urls]
 Homepage = "https://github.com/lachjones/nvdinterface"
+Repository = "https://github.com/lachjones/nvdinterface"
 Issues = "https://github.com/lachjones/nvdinterface/issues"
+Changelog = "https://github.com/LachJones/nvdinterface/tags"
 
 [tool.poetry.dependencies]
 python = ">=3.9"
