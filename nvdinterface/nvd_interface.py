@@ -9,6 +9,8 @@ from .internal.Exceptions import InvalidParametersException
 from .vuln_types import CVE
 from .vuln_types.property_types.ChangeItem import ChangeItem
 
+_url_base = "https://services.nvd.nist.gov/rest/json"
+
 
 def _get(
     endpoint: str,
@@ -27,7 +29,7 @@ def _get(
     """
 
     resp = requests.get(
-        f"https://services.nvd.nist.gov/rest/json{endpoint}/{api_version}",
+        f"{_url_base}{endpoint}/{api_version}",
         params=params,
         headers=headers,
     )
