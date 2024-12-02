@@ -10,6 +10,10 @@ class TestNVDInterface(unittest.TestCase):
 
     def setUp(self):
         self.api_key = os.environ.get('NVD_API_KEY')
+        if "CI" in os.environ:
+            self.delay = 60
+        else:
+            self.delay = 6
 
     def test_search_for_heartbleed(self):
         res = search_cves(cveId="CVE-2014-0160", nvdApiKey=self.api_key, resultsPerPage=100)
@@ -20,7 +24,7 @@ class TestNVDInterface(unittest.TestCase):
             self.assertIsInstance(cve, CVE)
 
     def test_search_all_for_heartbleed(self):
-        res = search_cves_all(cveId="CVE-2014-0160", nvdApiKey=self.api_key)
+        res = search_cves_all(cveId="CVE-2014-0160", nvdApiKey=self.api_key, sleep_seconds_between_requests=self.delay)
         self.assertIsInstance(res, list)
         self.assertEqual(1, len(res))
         for cve in res:
@@ -42,7 +46,7 @@ class TestNVDInterface(unittest.TestCase):
                 self.assertIsInstance(detail.type, str)
 
     def test_search_all_heartbleed_history(self):
-        res = cve_history_all(cveId="CVE-2014-0160", nvdApiKey=self.api_key)
+        res = cve_history_all(cveId="CVE-2014-0160", nvdApiKey=self.api_key, sleep_seconds_between_requests=self.delay)
         self.assertIsInstance(res, list)
         self.assertGreaterEqual(len(res), 28)
         for change in res:
