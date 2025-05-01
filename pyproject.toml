@@ -23,7 +23,7 @@ Changelog = "https://github.com/LachJones/nvdinterface/tags"
 python = ">=3.10"
 requests = "==2.32.3"
 datetime = "==5.5"
-iso639-lang = "==2.5.1"
+iso639-lang = "==2.6.0"
 
 [tool.poetry.group.tests]
 optional = true
