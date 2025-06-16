@@ -15,7 +15,6 @@ classifiers = [
 requires-python = ">=3.11"
 
 dependencies = [
-    "python>=3.11,<4.0",
     "requests==2.32.4",
     "datetime==5.5",
     "iso639-lang==2.6.0"
