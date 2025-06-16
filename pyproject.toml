@@ -1,6 +1,6 @@
 [project]
 name = "nvdinterface"
-version = "0.5.1"
+version = "0.5.2"
 authors = [
     {name = "Lachlan Jones"},
 ]
@@ -12,6 +12,13 @@ classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
 ]
+requires-python = ">=3.10"
+
+dependencies = [
+    "requests==2.32.4",
+    "datetime==5.5",
+    "iso639-lang==2.6.0"
+]
 
 [project.urls]
 Homepage = "https://github.com/lachjones/nvdinterface"
@@ -19,23 +26,8 @@ Repository = "https://github.com/lachjones/nvdinterface"
 Issues = "https://github.com/lachjones/nvdinterface/issues"
 Changelog = "https://github.com/LachJones/nvdinterface/tags"
 
-[tool.poetry.dependencies]
-python = ">=3.10"
-requests = "==2.32.4"
-datetime = "==5.5"
-iso639-lang = "==2.6.0"
-
-[tool.poetry.group.tests]
-optional = true
-
-[tool.poetry.group.tests.dependencies]
-black = "==25.1.0"
-
-[tool.poetry.group.docs]
-optional = true
-
-[tool.poetry.group.docs.dependencies]
-sphinx = "==8.1.3"
+[project.optional-dependencies]
+dev = ["black==25.1.0", "sphinx==8.1.3"]
 
 [build-system]
 requires = ["poetry-core"]
