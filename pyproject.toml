@@ -21,7 +21,7 @@ Changelog = "https://github.com/LachJones/nvdinterface/tags"
 
 [tool.poetry.dependencies]
 python = ">=3.10"
-requests = "==2.32.3"
+requests = "==2.32.4"
 datetime = "==5.5"
 iso639-lang = "==2.6.0"
 
