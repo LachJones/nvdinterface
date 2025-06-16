@@ -36,7 +36,7 @@ class CVSSMetricV30(BaseCVSSMetric):
         environmentalScore: Optional[float] = None,
         environmentalSeverity: Optional[str] = None,
         vectorString: Optional[str] = None,
-        **kwargs
+        **kwargs,
     ):
         super().__init__(
             attackVector,

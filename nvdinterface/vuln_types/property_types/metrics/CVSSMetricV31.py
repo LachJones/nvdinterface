@@ -36,7 +36,7 @@ class CVSSMetricV31(CVSSMetricV30):
         environmentalScore: Optional[float] = None,
         environmentalSeverity: Optional[str] = None,
         vectorString: Optional[str] = None,
-        **kwargs
+        **kwargs,
     ):
         super().__init__(
             attackVector=attackVector,
@@ -68,7 +68,7 @@ class CVSSMetricV31(CVSSMetricV30):
             environmentalScore=environmentalScore,
             environmentalSeverity=environmentalSeverity,
             vectorString=vectorString,
-            **kwargs
+            **kwargs,
         )
 
         self._vector_pattern = "^CVSS:3[.]1/((AV:[NALP]|AC:[LH]|PR:[NLH]|UI:[NR]|S:[UC]|[CIA]:[NLH]|E:[XUPFH]|RL:[XOTWU]|RC:[XURC]|[CIA]R:[XLMH]|MAV:[XNALP]|MAC:[XLH]|MPR:[XNLH]|MUI:[XNR]|MS:[XUC]|M[CIA]:[XNLH])/)*(AV:[NALP]|AC:[LH]|PR:[NLH]|UI:[NR]|S:[UC]|[CIA]:[NLH]|E:[XUPFH]|RL:[XOTWU]|RC:[XURC]|[CIA]R:[XLMH]|MAV:[XNALP]|MAC:[XLH]|MPR:[XNLH]|MUI:[XNR]|MS:[XUC]|M[CIA]:[XNLH])$"
