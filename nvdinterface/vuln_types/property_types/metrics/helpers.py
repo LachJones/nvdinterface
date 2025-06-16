@@ -4,7 +4,7 @@ from . import CVSSMetricV2, CVSSMetricV30, CVSSMetricV31, CVSSMetricV40
 
 
 def build_from_api_response(
-    d: Dict[str, Any]
+    d: Dict[str, Any],
 ) -> Union[CVSSMetricV2, CVSSMetricV30, CVSSMetricV31, CVSSMetricV40]:
     dat = d.copy()
     for k, v in d.get("cvssData", {}).items():
