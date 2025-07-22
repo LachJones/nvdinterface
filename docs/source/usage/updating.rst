@@ -1,10 +1,10 @@
 .. _updating:
 
 Updating
------
+--------
 
 From Sources
------
+------------
 
 From the root of the locally cloned project, update the sources.
 

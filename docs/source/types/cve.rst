@@ -1,7 +1,7 @@
 .. _cve:
 
 CVE
------
+---
 
 .. module:: CVE
 

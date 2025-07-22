@@ -1,7 +1,7 @@
 .. _interface:
 
 NVD Interface
--------------------
+-------------
 
 .. automodule:: nvdinterface
 

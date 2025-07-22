@@ -1,15 +1,15 @@
 .. _quickstart:
 
 Quickstart
------
+----------
 
 
 This guide gives a brief explanation of how to get started using this library.
 
 Make sure that:
 
-*nvdinterface is :ref:`installed <installation>`
-*nvdinterface is :ref:`up-to-date <updating>`
+* nvdinterface is :ref:`installed <installation>`
+* nvdinterface is :ref:`up-to-date <updating>`
 
 Searching for a Vulnerability
 -----------------------------

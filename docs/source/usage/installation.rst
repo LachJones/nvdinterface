@@ -1,10 +1,10 @@
 .. _installation:
 
 Installation
------
+------------
 
 Building from sources
------
+---------------------
 
 nvdinterface is available `on Github <https://github.com/LachJones/nvdinterface>`_.
 
