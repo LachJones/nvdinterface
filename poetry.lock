@@ -277,14 +277,14 @@ files = [
 
 [[package]]
 name = "iso639-lang"
-version = "2.6.0"
-description = "A simpler, faster ISO 639 library."
+version = "2.6.1"
+description = "A fast, comprehensive, ISO 639 library."
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "iso639_lang-2.6.0-py3-none-any.whl", hash = "sha256:e49908d63ae67903503cb0cc35b78af16eb3c91ba8b55167f7003574b6349edc"},
-    {file = "iso639_lang-2.6.0.tar.gz", hash = "sha256:ab491ec83d35bc094a00702547249db56ea2eaf780af0c890bad06c9ff3da352"},
+    {file = "iso639_lang-2.6.1-py3-none-any.whl", hash = "sha256:6f41183aafc84716c3d559f57c036b04c3262899b89f7eadd68c397cce1ab572"},
+    {file = "iso639_lang-2.6.1.tar.gz", hash = "sha256:5e960467cd95b7e4417d48792745a51457be0346417a3cde40a75cfc142e1a37"},
 ]
 
 [[package]]
@@ -758,4 +758,4 @@ dev = ["black", "sphinx"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11"
-content-hash = "73e81097b121b211f1823b868c58d801c5bd7da901cb9954f066f39cd3c2b625"
+content-hash = "1bccaf02d60dd8f667df917902637c933673f51dd3eebdf587c2d156ce5c5038"
