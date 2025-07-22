@@ -1,5 +1,5 @@
 Welcome to nvdinterface's documentation!
-=====================================
+========================================
 
 Release v\ |version|. (:ref:`Installation <installation>`)
 
