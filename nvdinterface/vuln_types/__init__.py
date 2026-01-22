@@ -13,7 +13,6 @@ from nvdinterface.vuln_types.property_types import (
 from .CVE import CVE
 from .CWE import CWE
 
-
 __all__ = [
     "Configuration",
     "Description",
