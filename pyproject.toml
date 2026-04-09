@@ -1,6 +1,6 @@
 [project]
 name = "nvdinterface"
-version = "0.6.3"
+version = "0.7.0"
 authors = [
     {name = "Lachlan Jones"},
 ]
@@ -12,13 +12,13 @@ classifiers = [
     "Development Status :: 2 - Pre-Alpha",
 ]
 license = "GPL-3.0-or-later"
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 
 dependencies = [
     "requests==2.33.1",
     "datetime==6.0",
     "iso639-lang==2.6.3",
-    "urllib3==2.6.3"
+    "urllib3>=2.6.3"
 ]
 
 [project.urls]
@@ -28,7 +28,7 @@ Issues = "https://github.com/lachjones/nvdinterface/issues"
 Changelog = "https://github.com/LachJones/nvdinterface/tags"
 
 [project.optional-dependencies]
-dev = ["black==26.3.1", "sphinx==9.0.4"]
+dev = ["black==26.3.1", "sphinx==9.1.0"]
 
 [tool.poetry]
 packages = [{include = "nvdinterface"}]
