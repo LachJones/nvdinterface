@@ -28,7 +28,7 @@ Issues = "https://github.com/lachjones/nvdinterface/issues"
 Changelog = "https://github.com/LachJones/nvdinterface/tags"
 
 [project.optional-dependencies]
-dev = ["black==26.3.1", "sphinx==9.1.0"]
+dev = ["black==26.10.1", "sphinx==9.1.0"]
 
 [tool.poetry]
 packages = [{include = "nvdinterface"}]
